@@ -1,0 +1,46 @@
+{
+	"componentName": "RECRUITING",
+	"componentCode": "recruiting",
+	"componentType": "service/product",
+	"dependsOn": [
+		"proCore"
+	],
+	"supportedLifeCycleActions": [
+		"create",
+		"clone",
+		"refresh",
+		"update",
+		"delete",
+		"reset"
+	],
+	"dataCenters": [
+		"",
+		""
+	],
+	"invocationStyle": "",
+	"callbackMechanism": "",
+	"authenticationMechanism": "OAuth2",
+	"authenticationServiceCode": "AUTH123",
+	"create": [
+		{
+			"name": "Perform a GET request to fetch posts",
+			"module": "uri",
+			"moduleParams": {
+				"url": "{{ url }}",
+				"method": "GET",
+				"return_content": true,
+				"headers": {
+					"Accept": "application/json"
+				}
+			},
+			"register": "get_response"
+		},
+		{
+			"name": "Print a message",
+			"module": "debug",
+			"moduleParams": {
+				"msg": "Hello, this is a debug message from Ansible!"
+			}
+		}
+	]
+}

@@ -1,0 +1,66 @@
+{
+	"event_type": "matrix",
+	"client_payload": {
+		"components": [
+			{
+				"componentCode": "proCore",
+				"dependsOn": null,
+				"playbook": {
+					"json": [],
+					"inputs": {
+						"key_1": "val_1"
+					}
+				}
+			},
+			{
+				"componentCode": "recruiting",
+				"dependsOn": [
+					{
+						"jobName": "proCore",
+						"workflowFile": "matrix.yml"
+					}
+				],
+				"playbook": {
+					"json": [],
+					"inputs": {
+						"key_1": "val_1"
+					}
+				}
+			},
+			{
+				"componentCode": "onboarding",
+				"dependsOn": [
+					{
+						"jobName": "recruiting",
+						"workflowFile": "matrix.yml"
+					}
+				],
+				"playbook": {
+					"json": [],
+					"inputs": {
+						"key_1": "val_1"
+					}
+				}
+			},
+			{
+				"componentCode": "ssp",
+				"dependsOn": [
+					{
+						"jobName": "recruiting",
+						"workflowFile": "matrix.yml"
+					},
+					{
+						"jobName": "onboarding",
+						"workflowFile": "matrix.yml"
+					}
+				],
+				"playbook": {
+					"json": [],
+					"inputs": {
+						"key_1": "val_1"
+					}
+				}
+			}
+		]
+	}
+}

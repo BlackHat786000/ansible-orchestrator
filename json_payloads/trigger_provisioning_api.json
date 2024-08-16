@@ -1,0 +1,32 @@
+{
+	"components": [
+		{
+			"componentCode": "proCore",
+			"action": "create",
+			"inputs": {
+				"key_1": "val_1"
+			}
+		},
+		{
+			"componentCode": "recruiting",
+			"action": "refresh",
+			"inputs": {
+				"key_1": "val_1"
+			}
+		},
+		{
+			"componentCode": "onboarding",
+			"action": "clone",
+			"inputs": {
+				"key_1": "val_1"
+			}
+		},
+		{
+			"componentCode": "ssp",
+			"action": "delete",
+			"inputs": {
+				"key_1": "val_1"
+			}
+		}
+	]
+}
