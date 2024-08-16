@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DebugModuleParams {
 
-    @NotNull
+    @NotNull(message = "msg cannot be null")
     private String msg;
 }

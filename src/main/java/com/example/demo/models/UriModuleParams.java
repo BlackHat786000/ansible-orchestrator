@@ -14,10 +14,10 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UriModuleParams {
 
-    @NotEmpty
+    @NotEmpty(message = "url is a mandatory field")
     private String url;
 
-    @NotEmpty
+    @NotEmpty(message = "method is a mandatory field")
     private String method;
 
     private boolean return_content;
