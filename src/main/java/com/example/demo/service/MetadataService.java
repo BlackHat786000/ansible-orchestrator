@@ -52,7 +52,7 @@ public class MetadataService {
             List<Map<String, Object>> tasks = new ArrayList<>();
             Map<String, Object> taskNode = new HashMap<>();
             taskNode.put("name", task.getName());
-            taskNode.put(task.getModule(), mapper.convertValue(task.getModuleParams(), Map.class));
+            taskNode.put(task.getModule(), task.getModuleParams());
             taskNode.put("register", task.getRegister());
             tasks.add(taskNode);
 
@@ -109,7 +109,7 @@ public class MetadataService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", "application/vnd.github+json");
-        headers.set("Authorization", "Bearer " + "<github_pat>");
+        headers.set("Authorization", "Bearer " + "");
         headers.set("Content-Type", "application/json");
 
         HttpEntity<String> request = new HttpEntity<>(jsonPayload, headers);

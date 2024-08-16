@@ -11,7 +11,8 @@ import lombok.Data;
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = UriTask.class, name = "uri"),
-        @JsonSubTypes.Type(value = DebugTask.class, name = "debug")
+        @JsonSubTypes.Type(value = DebugTask.class, name = "debug"),
+        @JsonSubTypes.Type(value = CommandTask.class, name = "command")
 })
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)

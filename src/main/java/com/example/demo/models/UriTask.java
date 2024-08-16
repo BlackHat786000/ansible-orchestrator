@@ -19,8 +19,8 @@ public class UriTask extends Task {
     @Valid
     private UriModuleParams moduleParams;
 
-    @Override
-    public UriModuleParams getModuleParams() {
-        return moduleParams;
-    }
+//    @Override
+//    public UriModuleParams getModuleParams() {
+//        return moduleParams;
+//    }
 }
