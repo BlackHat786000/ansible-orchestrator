@@ -24,6 +24,11 @@ public class MetadataService {
     @Autowired
     private RestTemplate restTemplate;
 
+    private Map<String, String> moduleMap = Map.of(
+            "kafka_producer", "uri",
+            "wrapper_module", "actual_module"
+    );
+
     public String triggerMatrixWorkflow(final ProvisionRequest provisionRequest) {
         Optional<Metadata> metadataOptional = this.metadataRepository.findById(provisionRequest.getComponentCode());
         if (metadataOptional.isPresent()) {
@@ -52,7 +57,7 @@ public class MetadataService {
             List<Map<String, Object>> tasks = new ArrayList<>();
             Map<String, Object> taskNode = new HashMap<>();
             taskNode.put("name", task.getName());
-            taskNode.put(task.getModule(), task.getModuleParams());
+            taskNode.put(getValue(task.getModule()), task.getModuleParams());
             taskNode.put("register", task.getRegister());
             tasks.add(taskNode);
 
@@ -121,6 +126,11 @@ public class MetadataService {
         } else {
             return "Request failed with status: " + response.getStatusCode();
         }
+    }
+
+    public String getValue(String key) {
+        String value = moduleMap.get(key);
+        return (value != null) ? value : key;
     }
 
 

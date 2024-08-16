@@ -12,7 +12,8 @@ import lombok.Data;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = UriTask.class, name = "uri"),
         @JsonSubTypes.Type(value = DebugTask.class, name = "debug"),
-        @JsonSubTypes.Type(value = CommandTask.class, name = "command")
+        @JsonSubTypes.Type(value = CommandTask.class, name = "command"),
+        @JsonSubTypes.Type(value = KafkaProducerTask.class, name = "kafka_producer")
 })
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
