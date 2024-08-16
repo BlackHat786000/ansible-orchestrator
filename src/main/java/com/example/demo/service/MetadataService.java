@@ -32,8 +32,9 @@ public class MetadataService {
     public String triggerMatrixWorkflow(final ProvisionRequest provisionRequest) {
         Optional<Metadata> metadataOptional = this.metadataRepository.findById(provisionRequest.getComponentCode());
         if (metadataOptional.isPresent()) {
-            log.info("Metadata found :: {}", metadataOptional.get());
-            String playbook = this.constructPlaybook(metadataOptional.get());
+            Metadata metadata = metadataOptional.get();
+            log.info("Metadata found :: {}", metadata);
+            String playbook = this.constructPlaybook(metadata);
             String matrixPayload = this.constructMatrixPayload(playbook, provisionRequest);
             return this.dispatchEvent(matrixPayload);
         } else {
@@ -44,6 +45,9 @@ public class MetadataService {
 
     public String constructPlaybook(Metadata metadata) {
         List<Task> taskList = metadata.getCreate();
+        if (taskList.isEmpty()) {
+            throw new RuntimeException("Metadata for create action is empty");
+        }
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
@@ -114,7 +118,7 @@ public class MetadataService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", "application/vnd.github+json");
-        headers.set("Authorization", "Bearer " + "");
+        headers.set("Authorization", "Bearer " + "github_pat");
         headers.set("Content-Type", "application/json");
 
         HttpEntity<String> request = new HttpEntity<>(jsonPayload, headers);

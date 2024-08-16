@@ -28,10 +28,38 @@ curl --location 'http://localhost:8080/orchestrator/metadata/create' \
     "authenticationServiceCode": "AUTH123",
     "create": [
         {
+            "name": "Perform a GET request",
             "module": "uri",
             "moduleParams": {
                 "url": "{{ url }}",
                 "method": "GET"
+            },
+            "register": "get_response"
+        },
+        {
+            "name": "Print GET response",
+            "module": "debug",
+            "moduleParams": {
+                "msg": "GET_RESPONSE: {{ get_response }}"
+            }
+        },
+        {
+            "name": "Produce kafka event",
+            "module": "kafka_producer",
+            "moduleParams": {
+                "body": {
+					"title": "foo",
+					"body": "{{ get_response.json[0].body }}",
+					"userId": "{{ get_response.json[0].userId }}"
+				}
+            },
+            "register": "post_response"
+        },
+        {
+            "name": "Print POST response",
+            "module": "debug",
+            "moduleParams": {
+                "msg": "POST_RESPONSE: {{ post_response }}"
             }
         },
         {
@@ -47,6 +75,11 @@ curl --location 'http://localhost:8080/orchestrator/metadata/create' \
             "moduleParams": {
                 "msg": "AGE: {{ age }}"
             }
+        },
+        {
+            "name": "Run a command",
+            "module": "command",
+            "moduleParams": "ls"
         }
     ]
 }'
