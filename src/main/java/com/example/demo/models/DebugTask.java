@@ -23,4 +23,14 @@ public class DebugTask extends Task {
 //    public DebugModuleParams getModuleParams() {
 //        return moduleParams;
 //    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class DebugModuleParams {
+
+        @NotNull(message = "msg cannot be null")
+        private String msg;
+    }
 }
