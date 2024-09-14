@@ -62,6 +62,8 @@ public class MetadataService {
             Map<String, Object> taskNode = new HashMap<>();
             taskNode.put("name", task.getName());
             taskNode.put(getValue(task.getModule()), task.getModuleParams());
+            taskNode.put("delegate_to", task.getDelegateTo());
+            taskNode.put("no_log", task.getNoLog());
             taskNode.put("register", task.getRegister());
             tasks.add(taskNode);
 
